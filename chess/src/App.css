@@ -77,6 +77,6 @@
 .available {
   width: 12px;
   height: 12px;
-  borde-radius: 50%;
+  border-radius: 50%;
   background-color: green;
 }
