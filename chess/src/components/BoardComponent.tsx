@@ -2,15 +2,18 @@ import classNames from "classnames";
 import React, { FC, useEffect, useState } from "react";
 import { Board } from "../models/Board";
 import { Cell } from "../models/Cell";
+import { Player } from "../models/Player";
 import CellComponent from "./CellComponent";
 
 
 interface BoardProps {
     board: Board;
-    setBoard: (board: Board) => void
+    setBoard: (board: Board) => void;
+    currentPlayer: Player | null;
+    swapPlayer: () => void;
 }
 
-const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
+const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) => {
 
     // Выбранная ячейка
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
@@ -18,9 +21,13 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
     function click(cell: Cell) {
         if(selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
             selectedCell.moveFigure(cell);
+            swapPlayer()
             setSelectedCell(null)
         } else {
-            setSelectedCell(cell)
+            if (cell.figure?.color === currentPlayer?.color) {
+                setSelectedCell(cell)
+            }
+
         }
     }
 
