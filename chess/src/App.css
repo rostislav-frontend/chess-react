@@ -9,18 +9,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: center / cover no-repeat url('./assets/background.png');
 }
 
 .board {
-  width: calc(64px * 8);
-  height: calc(64px * 8);
+  width: calc(80px * 8);
+  height: calc(80px * 8);
   display: flex;
   flex-wrap: wrap;
 }
 
 .cell {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,9 +33,9 @@
 }
 
 .black {
-  background-color: deepskyblue;
+  background-color: #eed4ac;
 }
 
 .white {
-  background-color: #eed4ac;
+  background-color: #A0522D;
 }
