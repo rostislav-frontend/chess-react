@@ -10,7 +10,7 @@ interface BoardProps {
 }
 
 const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
-    const [click, setClick] = useState(false)
+    const [click, setClick] = useState<Boolean>(false)
     function startGameNone() {
         setClick(true)
     }
