@@ -85,10 +85,21 @@ export class Cell {
         // у ячейки которая смотрит на фигуру так же меняем на this
         this.figure.cell = this;
     }
+    // массив со съеденными фигурами
+    addLostFigure(figure: Figure) {
+        figure.color === Colors.BLACK 
+        ? this.board.lostBlackFigures.push(figure)
+        : this.board.lostWhiteFigures.push(figure)
+    }
 
+    // логика удаления фигур
     moveFigure(target: Cell) {
         if(this.figure && this.figure?.canMove(target)) {
-            this.figure?.moveFigure(target)
+            this.figure?.moveFigure(target);
+
+            if (target.figure) {
+                this.addLostFigure(target.figure)
+            }
             target.setFigure(this.figure);
             this.figure = null;
         }

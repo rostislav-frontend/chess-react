@@ -1,6 +1,7 @@
 import { Cell } from "./Cell";
 import { Colors } from "./Colors";
 import { Bishop } from "./figure/Bishop";
+import { Figure } from "./figure/Figure";
 import { King } from "./figure/King";
 import { Knight } from "./figure/Knight";
 import { Pawn } from "./figure/Pawn";
@@ -10,7 +11,12 @@ import { Rook } from "./figure/Rook";
 export class Board {
     cells: Cell[][] = [];
 
+    // массив с черными и белыми фигурами
+    lostBlackFigures: Figure[] = []
+    lostWhiteFigures: Figure[] = []
 
+
+    // создание ячеек доски
     public initCells() {
         for (let i = 0; i < 8; i++) {
             const row: Cell[] = [];

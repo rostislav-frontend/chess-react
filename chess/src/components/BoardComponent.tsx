@@ -51,12 +51,14 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
         setClickButton(true)
     }
     return (
+        <>
         <div className="boardWrapper">
             <div  className={classNames('board-start', {
                 'boardStartNone': clickButton
             })} >
                 <button onClick={startGame}>Game</button>
             </div>
+            <h3>Текущий игрок {currentPlayer?.color}</h3>
             <div className="board">
                 {board.cells.map((row, index) =>
                     <React.Fragment key={index}>
@@ -67,6 +69,7 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
                 )}
             </div>
         </div>
+        </>
 
     )
 }
