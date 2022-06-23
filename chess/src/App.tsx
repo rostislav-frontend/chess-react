@@ -1,9 +1,10 @@
 import './App.css';
+import BoardComponent from './components/BoardComponent';
 
 function App() {
   return (
-    <div>
-
+    <div className='app'>
+      <BoardComponent />
     </div>
   );
 }
