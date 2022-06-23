@@ -40,16 +40,45 @@ export class Cell {
     }
 
     isEmptyHorizontal(target: Cell): boolean {
-        return true
+        if(this.y !== target.y) {
+            return false
+        } 
+        const min = Math.min(this.x, target.x);
+        const max = Math.max(this.x, target.x);
+
+        for(let x = min + 1; x < max; x++) {
+            if(!this.board.getCell(x, this.y).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     isEmptyDiagonal(target: Cell): boolean {
-        return true
+        const absX = Math.abs(target.x - this.x);
+        const absY = Math.abs(target.y - this.y);
+        if (absY !== absX) {
+            return false
+        }
+
+        const dy = this.y < target.y ? 1 : -1;
+        const dx = this.x < target.x ? 1 : -1;
+
+        for (let i = 1; i < absY; i++) {
+            if(!this.board.getCell(this.x + dx*i, this.y + dy * i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
     }
+    // для текущей ячейки мы меняем фигуру , так как есть кольцевая зависимость
     setFigure(figure: Figure) {
         this.figure = figure;
+        // у ячейки которая смотрит на фигуру так же меняем на this
         this.figure.cell = this;
     }
+
     moveFigure(target: Cell) {
         if(this.figure && this.figure?.canMove(target)) {
             this.figure?.moveFigure(target)
