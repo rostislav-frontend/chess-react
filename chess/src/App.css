@@ -69,3 +69,14 @@
 .white {
   background-color: #A0522D;
 }
+
+.selected {
+  background: brown;
+}
+
+.available {
+  width: 12px;
+  height: 12px;
+  borde-radius: 50%;
+  background-color: green;
+}
