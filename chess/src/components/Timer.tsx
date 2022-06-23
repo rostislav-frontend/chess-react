@@ -5,10 +5,11 @@ import { Player } from "../models/Player";
 interface TimerProps {
     currentPlayer: Player | null;
     restart : () => void;
+    clickButton: Boolean | null;
 
 }
 
-const Timer:FC<TimerProps> = ({ currentPlayer, restart }) => {
+const Timer:FC<TimerProps> = ({ currentPlayer, restart, clickButton }) => {
     const [blackTime, setBlackTime] = useState(300);
     const [whiteTime, setWhiteTime] = useState(300);
 
@@ -18,7 +19,10 @@ const Timer:FC<TimerProps> = ({ currentPlayer, restart }) => {
             clearInterval(timer.current)
         }
         const callback = currentPlayer?.color === Colors.WHITE ? decrementWhiteTimer : decrementBlackTimer
-        timer.current = setInterval(callback, 1000)
+        if (clickButton) {
+            timer.current = setInterval(callback, 1000)
+        }
+        
     }
 
     function decrementBlackTimer() {
@@ -37,13 +41,16 @@ const Timer:FC<TimerProps> = ({ currentPlayer, restart }) => {
         setBlackTime(300)
         restart()
     }
+    
     return (
-        <div>
+        <div className="timer">
+            <h2>Ходит - {currentPlayer?.color === 'white' ? 'белый' : 'черный'}</h2>
+            <h2>Черные: {blackTime}</h2>
+            <h2>Белые: {whiteTime}</h2>
+
             <div className="restart">
                 <button onClick={handleRestart}>Restart game</button>
             </div>
-            <h2>Черные - {blackTime}</h2>
-            <h2>Белые - {whiteTime}</h2>
         </div>
     )
 }

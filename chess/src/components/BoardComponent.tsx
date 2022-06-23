@@ -11,9 +11,11 @@ interface BoardProps {
     setBoard: (board: Board) => void;
     currentPlayer: Player | null;
     swapPlayer: () => void;
+    startGame: () => void;
+    clickButton: Boolean | null;
 }
 
-const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) => {
+const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer, startGame, clickButton }) => {
 
     // Выбранная ячейка
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
@@ -46,10 +48,7 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
     }, [selectedCell])
 
 
-    const [clickButton, setClickButton] = useState<Boolean>(true);
-    function startGame() {
-        setClickButton(true)
-    }
+
     return (
         <>
         <div className="boardWrapper">
@@ -58,7 +57,6 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
             })} >
                 <button onClick={startGame}>Game</button>
             </div>
-            <h3>Текущий игрок {currentPlayer?.color}</h3>
             <div className="board">
                 {board.cells.map((row, index) =>
                     <React.Fragment key={index}>

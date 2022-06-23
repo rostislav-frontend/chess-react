@@ -15,6 +15,11 @@ function App() {
 
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 
+  const [clickButton, setClickButton] = useState<Boolean>(false);
+  function startGame() {
+      setClickButton(true)
+  }
+
   useEffect(() => {
     restart()
     setCurrentPlayer(whitePlayer)
@@ -33,9 +38,9 @@ function App() {
 
   return (
     <div className='app'>
-      <Timer restart={restart} currentPlayer={currentPlayer} />
-      <BoardComponent currentPlayer={currentPlayer} swapPlayer={swapPlayer} board={board} setBoard={setBoard} />
-      <div>
+      <BoardComponent currentPlayer={currentPlayer} swapPlayer={swapPlayer} board={board} setBoard={setBoard} clickButton={clickButton} startGame={startGame} />
+      <div className='info-game'>
+        <Timer clickButton={clickButton} restart={restart} currentPlayer={currentPlayer} />
         <LostFigures title="Белые фигуры" figures={board.lostBlackFigures} />
         <LostFigures title="Черные фигуры" figures={board.lostWhiteFigures} />
       </div>

@@ -81,13 +81,45 @@
   background-color: green;
 }
 
-.lost {
-  height: calc(50vh - 60px);
-  padding: 30px;
+
+.info-game {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
   margin-left: 50px;
-  background-color: gray;
+  text-align: left;
+  width: 250px;
+  background: #A0522D;
 }
+
+
+.lost {
+  max-width: 170px;
+  width: 100%;
+  margin-bottom: 50px;
+  
+}
+
 .lost-figure {
   display: flex;
   align-items: center;
+}
+
+.restart button {
+  margin: 30px 0;
+  width: 100%;
+  background: #FFF8DC;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+}
+
+.timer {
+  margin-top: 20px;
 }
