@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import classNames from "classnames";
+import React, { FC, useState } from "react";
 import { Board } from "../models/Board";
 import CellComponent from "./CellComponent";
 
@@ -8,17 +9,29 @@ interface BoardProps {
     setBoard: (board: Board) => void
 }
 
-const BoardComponent: FC<BoardProps> = ({board, setBoard}) => {
+const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
+    const [click, setClick] = useState(false)
+    function startGameNone() {
+        setClick(true)
+    }
     return (
-        <div className="board">
-            {board.cells.map((row, index) => 
-                <React.Fragment key={index}>
-                    {row.map(cell => 
-                        <CellComponent cell={cell} key={cell.id} />
-                    )}
-                </React.Fragment>
-            )}
+        <div className="boardWrapper">
+            <div  className={classNames('board-start', {
+                'boardStartNone': click
+            })} >
+                <button onClick={startGameNone}>Game</button>
+            </div>
+            <div className="board">
+                {board.cells.map((row, index) =>
+                    <React.Fragment key={index}>
+                        {row.map(cell =>
+                            <CellComponent cell={cell} key={cell.id} />
+                        )}
+                    </React.Fragment>
+                )}
+            </div>
         </div>
+
     )
 }
 
