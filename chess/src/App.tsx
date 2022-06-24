@@ -39,11 +39,13 @@ function App() {
   return (
     <div className='app'>
       <BoardComponent currentPlayer={currentPlayer} swapPlayer={swapPlayer} board={board} setBoard={setBoard} clickButton={clickButton} startGame={startGame} />
-      <div className='info-game'>
+      {/* пока не нажали на кнопку старта игры не показываем инфо блок о игре */}
+      {clickButton ? <div className='info-game'>
         <Timer clickButton={clickButton} restart={restart} currentPlayer={currentPlayer} />
         <LostFigures title="Белые фигуры" figures={board.lostBlackFigures} />
         <LostFigures title="Черные фигуры" figures={board.lostWhiteFigures} />
-      </div>
+      </div> : ''}
+
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import classNames from "classnames";
+
 import React, { FC, useEffect, useState } from "react";
 import { Board } from "../models/Board";
 import { Cell } from "../models/Cell";
 import { Player } from "../models/Player";
 import CellComponent from "./CellComponent";
+import StartGame from "./startGame";
 
 
 interface BoardProps {
@@ -50,13 +51,8 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
 
 
     return (
-        <>
         <div className="boardWrapper">
-            <div  className={classNames('board-start', {
-                'boardStartNone': clickButton
-            })} >
-                <button onClick={startGame}>Game</button>
-            </div>
+            <StartGame clickButton={clickButton}  startGame={startGame} />
             <div className="board">
                 {board.cells.map((row, index) =>
                     <React.Fragment key={index}>
@@ -67,8 +63,6 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
                 )}
             </div>
         </div>
-        </>
-
     )
 }
 
